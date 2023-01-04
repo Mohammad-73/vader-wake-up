@@ -1,9 +1,11 @@
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-function AddAlarmButton({ alarmTime, alarmTitle }) {
+function AddAlarmButton() {
+  const navigation = useNavigation();
+
   function addAlarmHandler() {
-    // onGoalAdd(enteredGoalText);
-    // setEnteredGoalText("");
+    navigation.navigate("NewAlarm", { name: "Jane" });
   }
 
   return (

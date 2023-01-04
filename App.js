@@ -1,70 +1,20 @@
-import { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import { FlatList, StyleSheet, View } from "react-native";
-import AlarmItem from "./components/AlarmItem";
-import AddAlarmButton from "./components/AddAlarmButton";
-import { LinearGradient } from "expo-linear-gradient";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet } from "react-native";
+import HomeScreen from "./components/HomeScreen";
+import NewAlarm from "./components/NewAlarm";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [alarmList, setAlarmList] = useState([]);
-
-  useEffect(() => {
-    setAlarmList([
-      { time: "00:00", text: "Alarm one", id: 1 },
-      { time: "00:00", text: "Alarm two", id: 2 },
-      { time: "00:00", text: "Alarm three", id: 3 },
-      { time: "00:00", text: "Alarm four", id: 4 },
-      { time: "00:00", text: "Alarm five", id: 5 },
-      { time: "00:00", text: "Alarm six", id: 6 },
-      { time: "00:00", text: "Alarm seven", id: 7 },
-    ]);
-  }, []);
-
   return (
-    <>
-      <StatusBar style="light" />
-      <View style={styles.alarmContainer}>
-        <FlatList
-          ListFooterComponentStyle={() => {
-            return (
-              <LinearGradient
-                // Background Linear Gradient
-                colors={["transparent", "rgba(0,0,0,0.8)"]}
-                style={styles.linearBackground}
-              />
-            );
-          }}
-          data={alarmList}
-          renderItem={(alarmItem) => {
-            return (
-              <AlarmItem
-                alarmTime={alarmItem.item.time}
-                alarmTitle={alarmItem.item.text}
-              />
-            );
-          }}
-          keyExtractor={(item) => item.id}
-          alwaysBounceVertical={false}
-        />
-        <AddAlarmButton />
-      </View>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="NewAlarm" component={NewAlarm} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  appContainer: {
-    backgroundColor: "#121212",
-  },
-  alarmContainer: {
-    paddingTop: 50,
-    flex: 5,
-  },
-  linearBackground: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-  },
-});
+const styles = StyleSheet.create({});
