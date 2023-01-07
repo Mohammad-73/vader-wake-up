@@ -1,11 +1,12 @@
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-function AddAlarmButton() {
+function AddAlarmButton({ onPress }) {
   const navigation = useNavigation();
 
   function addAlarmHandler() {
-    navigation.navigate("NewAlarm", { name: "Jane" });
+    onPress();
+    // navigation.navigate("NewAlarm", { name: "Jane" });
   }
 
   return (

@@ -4,9 +4,21 @@ import { FlatList, StyleSheet, View } from "react-native";
 import AlarmItem from "./AlarmItem";
 import AddAlarmButton from "./AddAlarmButton";
 import { LinearGradient } from "expo-linear-gradient";
+import AddAlarmModal from "./AddAlarmModal";
 
 export default function HomeScreen() {
   const [alarmList, setAlarmList] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  function startAddAlarmHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endAddAlarmHandler() {
+    setModalIsVisible(false);
+  }
+
+  function addAlarmHandler(enteredGoalText) {}
 
   useEffect(() => {
     setAlarmList([
@@ -46,7 +58,14 @@ export default function HomeScreen() {
           keyExtractor={(item) => item.id}
           alwaysBounceVertical={false}
         />
-        <AddAlarmButton />
+        <AddAlarmButton onPress={startAddAlarmHandler} />
+        {modalIsVisible && (
+          <AddAlarmModal
+            visible={modalIsVisible}
+            onAlarmAdd={addAlarmHandler}
+            onCancel={endAddAlarmHandler}
+          />
+        )}
       </View>
     </>
   );
