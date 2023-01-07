@@ -7,11 +7,29 @@ import NewAlarm from "./components/NewAlarm";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const screenOptions = {
+    headerStyle: {
+      backgroundColor: "#f4511e",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  };
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen">
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="NewAlarm" component={NewAlarm} />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={screenOptions}
+        />
+        <Stack.Screen
+          name="NewAlarm"
+          component={NewAlarm}
+          options={screenOptions}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
