@@ -17,18 +17,28 @@ const screenOption = {
 };
 
 export default function App() {
+  const screenOptions = {
+    headerStyle: {
+      backgroundColor: "#f4511e",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  };
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={screenOption}
+          options={screenOptions}
         />
         <Stack.Screen
           name="NewAlarm"
           component={NewAlarm}
-          options={screenOption}
+          options={screenOptions}
         />
       </Stack.Navigator>
     </NavigationContainer>
