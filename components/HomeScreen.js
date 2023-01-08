@@ -3,10 +3,20 @@ import { StatusBar } from "expo-status-bar";
 import { FlatList, StyleSheet, View } from "react-native";
 import AlarmItem from "./AlarmItem";
 import AddAlarmButton from "./AddAlarmButton";
+import AddAlarmModal from "./AddAlarmModal";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function HomeScreen() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [alarmList, setAlarmList] = useState([]);
+
+  function startAddAlarmHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endAddAlarmHandler() {
+    setModalIsVisible(false);
+  }
 
   useEffect(() => {
     setAlarmList([
@@ -19,6 +29,14 @@ export default function HomeScreen() {
       { time: "00:00", text: "Alarm seven", id: 7 },
     ]);
   }, []);
+
+  function addAlarmHandler(enteredGoalText) {
+    // setCourseGoals((currentCourseGoals) => [
+    //   ...currentCourseGoals,
+    //   { text: enteredGoalText, id: Math.random().toString() },
+    // ]);
+    // endAddAlarmHandler();
+  }
 
   return (
     <>
@@ -46,8 +64,15 @@ export default function HomeScreen() {
           keyExtractor={(item) => item.id}
           alwaysBounceVertical={false}
         />
-        <AddAlarmButton />
+        <AddAlarmButton onPress={startAddAlarmHandler} />
       </View>
+      {modalIsVisible && (
+        <AddAlarmModal
+          visible={modalIsVisible}
+          onAlarmAdd={addAlarmHandler}
+          onCancel={endAddAlarmHandler}
+        />
+      )}
     </>
   );
 }
