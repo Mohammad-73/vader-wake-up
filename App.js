@@ -19,7 +19,7 @@ const screenOption = {
 export default function App() {
   const screenOptions = {
     headerStyle: {
-      backgroundColor: "#f4511e",
+      backgroundColor: "#191919",
     },
     headerTintColor: "#fff",
     headerTitleStyle: {

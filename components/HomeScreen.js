@@ -5,6 +5,7 @@ import AlarmItem from "./AlarmItem";
 import AddAlarmButton from "./AddAlarmButton";
 import AddAlarmModal from "./AddAlarmModal";
 import { LinearGradient } from "expo-linear-gradient";
+import Test from "./test";
 
 export default function HomeScreen() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -64,6 +65,7 @@ export default function HomeScreen() {
           keyExtractor={(item) => item.id}
           alwaysBounceVertical={false}
         />
+        <Test />
         <AddAlarmButton onPress={startAddAlarmHandler} />
       </View>
       {modalIsVisible && (
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#121212",
   },
   alarmContainer: {
-    paddingTop: 50,
+    // paddingTop: 50,
     flex: 5,
   },
   linearBackground: {
